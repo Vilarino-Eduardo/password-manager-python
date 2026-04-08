@@ -42,6 +42,23 @@ def view_credentials(vault):
         print(f"Username: {item['username']}")
         print(f"Password: {item['password']}")
         print("-" * 20)
+        
+        
+def search_credentials(vault):
+    website_search = input("Search website: ").lower()
+
+    found = False
+
+    for item in vault:
+        if item["website"].lower() == website_search:
+            print(f"Website: {item['website']}")
+            print(f"Username: {item['username']}")
+            print(f"Password: {item['password']}")
+            found = True
+            break
+
+    if not found:
+        print("No credential found for that website.")
 
 
 def main():
@@ -51,7 +68,8 @@ def main():
         print("\n--- PASSWORD MANAGER ---")
         print("1 - Add Credential")
         print("2 - View Credentials")
-        print("3 - Exit")
+        print("3 - Search Credential")
+        print("4 - Exit")
 
         choice = input("Choose: ")
 
@@ -60,6 +78,8 @@ def main():
         elif choice == "2":
             view_credentials(vault)
         elif choice == "3":
+            search_credentials(vault)
+        elif choice == "4":
             print("Exiting...")
             break
         else:
