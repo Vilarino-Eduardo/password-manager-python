@@ -1,5 +1,7 @@
 import json
 import os
+import random
+import string
 
 VAULT_FILE = "vault.json"
 
@@ -59,6 +61,15 @@ def search_credentials(vault):
 
     if not found:
         print("No credential found for that website.")
+        
+
+def generate_password():
+    length = 12
+    characters = string.ascii_letters + string.digits + string.punctuation
+
+    password = "".join(random.choice(characters) for _ in range(length))
+
+    print("Generated password:", password)
 
 
 def main():
@@ -69,7 +80,8 @@ def main():
         print("1 - Add Credential")
         print("2 - View Credentials")
         print("3 - Search Credential")
-        print("4 - Exit")
+        print("4 - Generate Password")
+        print("5 - Exit")
 
         choice = input("Choose: ")
 
@@ -80,6 +92,8 @@ def main():
         elif choice == "3":
             search_credentials(vault)
         elif choice == "4":
+            generate_password()
+        elif choice == "5":
             print("Exiting...")
             break
         else:
